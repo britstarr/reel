@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ShowCard from './ShowCard';
 import Header from './Header';
 import { arrayOf, shape, string } from 'prop-types';
@@ -6,32 +7,18 @@ import { arrayOf, shape, string } from 'prop-types';
 class Search extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      searchTerm: ''
-    };
 
-    this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
     this.filterShows = this.filterShows.bind(this);
   }
 
-  handleSearchTermChange (event) {
-    this.setState({
-      searchTerm: event.target.value
-    });
-  }
-
   filterShows (show) {
-    return `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0;
+    return `${show.title} ${show.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase()) >= 0;
   }
 
   render () {
     return (
       <div className='search'>
-        <Header
-          showSearch
-          searchTerm={this.state.searchTerm}
-          handleSearchTermChange={this.handleSearchTermChange}
-        />
+        <Header showSearch />
         <div>
           { this.props.shows
             .filter(this.filterShows)
@@ -50,7 +37,14 @@ Search.propTypes = {
   shows: arrayOf(shape({
     title: string,
     description: string
-  }))
+  })),
+  searchTerm: string
 };
 
-export default Search;
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.searchTerm
+  };
+};
+
+export default connect(mapStateToProps)(Search);
