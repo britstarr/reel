@@ -1,4 +1,4 @@
-import { SET_SEARCH_TERM } from './actions';
+import { SET_SEARCH_TERM } from '../actions/actions';
 
 const DEFAULT_STATE = {
   searchTerm: ''

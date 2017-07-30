@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchTerm } from './actionCreators';
+import { setSearchTerm } from './actions/actionCreators';
 import { Link } from 'react-router-dom';
 import { func, bool, string } from 'prop-types';
 

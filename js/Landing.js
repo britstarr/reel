@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { string, func, object } from 'prop-types';
-import { setSearchTerm } from './actionCreators';
+import { setSearchTerm } from './actions/actionCreators';
 
 class Landing extends Component {
   constructor (props, context) {
