@@ -1,33 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { getOMDBDetails } from './actions/actioncreators';
 import Header from './Header';
-import { shape, string } from 'prop-types';
-import key from '../_priv/keys';
+import { shape, string, func } from 'prop-types';
 
 class Details extends Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      omdbData: false
-    };
-  }
-
   componentDidMount () {
-    axios.get(`http://www.omdbapi.com/?apikey=${key.omdb}&i=${this.props.show.imdbID}`)
-      .then((response) => {
-        this.setState({
-          omdbData: response.data
-        });
-      })
-      .catch((error) => console.log('axios broke :(', error));
+    if (!this.props.omdbData.imdbRating) {
+      this.props.dispatch(getOMDBDetails(this.props.show.imdbID));
+    }
   }
 
   render () {
     const { title, description, year, poster, trailer } = this.props.show;
     let rating;
-    if (this.state.omdbData.imdbRating) {
-      rating = <h3>{this.state.omdbData.imdbRating}</h3>;
+    if (this.props.omdbData.imdbRating) {
+      rating = <h3>{this.props.omdbData.imdbRating}</h3>;
     } else {
       rating = <img src='/public/img/loading.png' alt='loading indicator' />;
     }
@@ -56,7 +44,18 @@ Details.propTypes = {
     year: string,
     poster: string,
     trailer: string
-  })
+  }),
+  omdbData: shape({
+    imdbID: string
+  }),
+  dispatch: func
 };
 
-export default Details;
+const mapStatetoProps = (state, ownProps) => {
+  const omdbData = state.omdbData[ownProps.show.imdbID] ? state.omdbData[ownProps.show.imdbID] : {};
+  return {
+    omdbData
+  };
+};
+
+export default connect(mapStatetoProps)(Details);
