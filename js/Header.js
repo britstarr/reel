@@ -8,10 +8,16 @@ class Header extends Component {
   constructor (props) {
     super(props);
 
+    this.resetSearch = this.resetSearch.bind(this);
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
   }
+
   handleSearchTermChange (event) {
     this.props.dispatch(setSearchTerm(event.target.value));
+  }
+
+  resetSearch () {
+    this.props.dispatch(setSearchTerm(''));
   }
 
   render () {
@@ -30,7 +36,7 @@ class Header extends Component {
     return (
       <header>
         <h1>
-          <Link to='/'>
+          <Link onClick={this.resetSearch} to='/'>
             Reel
           </Link>
         </h1>
