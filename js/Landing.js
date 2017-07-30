@@ -9,6 +9,7 @@ class Landing extends Component {
     super(props, context);
 
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+    this.browseAll = this.browseAll.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
@@ -21,6 +22,10 @@ class Landing extends Component {
     this.context.router.history.push('/search');
   }
 
+  browseAll () {
+    this.props.dispatch(setSearchTerm(''));
+  }
+
   render () {
     return (
       <div className='landing'>
@@ -29,7 +34,7 @@ class Landing extends Component {
           <input onChange={this.handleSearchTermChange} value={this.props.searchTerm} type='text' placeholder='Search' />
         </form>
 
-        <Link to='/search'>or Browse All</Link>
+        <Link onClick={this.browseAll} to='/search'>or Browse All</Link>
       </div>
     );
   }
