@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOMDBDetails } from './actions/actioncreators';
+import { getOMDBDetails } from './actions/actionCreators';
 import Header from './Header';
 import { shape, string, func } from 'prop-types';
 
@@ -51,11 +51,11 @@ Details.propTypes = {
   dispatch: func
 };
 
-const mapStatetoProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   const omdbData = state.omdbData[ownProps.show.imdbID] ? state.omdbData[ownProps.show.imdbID] : {};
   return {
     omdbData
   };
 };
 
-export default connect(mapStatetoProps)(Details);
+export default connect(mapStateToProps)(Details);

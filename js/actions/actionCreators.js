@@ -11,7 +11,9 @@ export function setSearchTerm (searchTerm) {
 
 export function addOMDBData (imdbID, omdbData) {
   return {
-    type: ADD_OMDB_DATA, imdbID, omdbData
+    type: ADD_OMDB_DATA,
+    imdbID,
+    omdbData
   };
 }
 
