@@ -36,7 +36,7 @@ class Header extends Component {
     return (
       <header>
         <h1>
-          <Link onClick={this.resetSearch} to='/'>
+          <Link to='/' onClick={this.resetSearch}>
             Reel
           </Link>
         </h1>

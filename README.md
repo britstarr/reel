@@ -1,13 +1,24 @@
-# A Complete Intro to React
+# Reel
+Netflix clone built with React/Redux.
 
-Welcome to a complete intro to React! The site actual workshop material for this repo can be found [here][gh-page]. On the master branch you will find the completed project. On the start branch you will find the barebones boilerplate of the project designed to help you get started.
+Original repo can be found [here][gh-page].
 
-## Contributing
+## Requirements
+- An [OMDB API Key][omdb]
+- After obtaining your API Key:
+	- from the root, create a directory called ``_priv``
+	- create a file within that directory called ``keys.js``
+	- structure your keys file like so:
+		- ``const keys = {
+			  omdb: [YOUR_API_KEY]
+			};
+			export default keys;``
 
-Please contribute, file issues, and make PRs. More than anything I'm sure there are typos abounding.
 
-## License
 
-MIT
+## To Run
+- `` npm install``
+- `` npm run dev``
 
 [gh-page]: http://btholt.github.io/complete-intro-to-react/
+[omdb]: http://www.omdbapi.com/
